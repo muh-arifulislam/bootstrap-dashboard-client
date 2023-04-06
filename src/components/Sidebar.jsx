@@ -24,7 +24,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
     <nav>
       {isSidebarOpen && (
         <div
-          className="custom-bg-primary-light"
+          className="custom-bg-primary-light position-relative"
           style={{ width: "250px", height: "100vh", boxSizing: "border-box" }}
         >
           <Container className="w-100 p-0">
@@ -98,24 +98,13 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                 </li>
                 <li className="">
                   <CustomLink
-                    to="daily"
+                    to="breakdown"
                     className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
                   >
                     <span className="me-3">
                       <i class="bi bi-calendar-event"></i>
                     </span>
-                    <span>Daily</span>
-                  </CustomLink>
-                </li>
-                <li className="">
-                  <CustomLink
-                    to="monthly"
-                    className="position-relative text-white text-decoration-none w-100 d-flex px-4 py-2  nav-link"
-                  >
-                    <span className="me-3">
-                      <i class="bi bi-calendar3"></i>
-                    </span>
-                    <span>Monthly</span>
+                    <span>Breakdown</span>
                   </CustomLink>
                 </li>
               </ul>
@@ -134,20 +123,9 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     <span>Admin</span>
                   </CustomLink>
                 </li>
-                <li className="">
-                  <CustomLink
-                    to="users"
-                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
-                  >
-                    <span className="me-3">
-                      <i class="bi bi-person-check"></i>
-                    </span>
-                    <span>Users</span>
-                  </CustomLink>
-                </li>
               </ul>
             </div>
-            <div className="d-flex justify-content-center">
+            <div className="position-absolute left-0 w-100 d-flex justify-content-center" style={{bottom:'30px'}}>
               <button className="px-4 py-1 rounded border-0 shadow bg-secondary fs-5 d-flex">
                 <span> Logout</span>
                 <span className="ms-3">
