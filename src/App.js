@@ -11,11 +11,13 @@ import Overview from "./scenes/Dashboard/Overview";
 import Admin from "./scenes/Dashboard/Admin";
 import Breakdown from "./scenes/Dashboard/Breakdown";
 import Login from "./scenes/Login/Login";
+import Register from "./scenes/Register/Register";
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
         <Route element={<Layout></Layout>}>
           <Route path="/" element={<Navigate to="/dashboard" replace></Navigate>}></Route>
           <Route path="/dashboard" element={<Dashboard></Dashboard>} />

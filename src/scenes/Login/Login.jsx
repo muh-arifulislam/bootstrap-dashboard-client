@@ -85,7 +85,7 @@ const Login = () => {
           {/* <!-- Register buttons --> */}
           <div class="text-center">
             <p>
-              Not a member? <a href="#!">Register</a>
+              Not a member? <a href="/register">Register</a>
             </p>
           </div>
         </form>
