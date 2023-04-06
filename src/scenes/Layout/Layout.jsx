@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   return (
-    <Container fluid className="d-flex px-0">
+    <div
+      style={{ boxSizing: "border-box", width: "100%", height: "100vh" }}
+      className="d-flex overflow-hidden"
+    >
       <Sidebar
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
@@ -17,9 +20,14 @@ function Layout() {
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         ></Navbar>
-        <Outlet></Outlet>
+        <div
+          className="position-relative"
+          style={{ height: "100vh" }}
+        >
+          <Outlet></Outlet>
+        </div>
       </div>
-    </Container>
+    </div>
   );
 }
 

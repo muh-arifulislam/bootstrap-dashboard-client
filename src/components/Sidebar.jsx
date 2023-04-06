@@ -1,141 +1,164 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
-  return (
-    <div
-      style={{
-        width: `${isSidebarOpen ? "250px" : "0px"}`,
-        transition: "width 0.5s ease-out",
-        height: "100vh",
-      }}
-      className="overflow-hidden bg-primary"
-    >
-      <Container className="px-0">
-        <div className="mx-4 mt-3 mb-4">
-          <h2 className="fs-4">Ecomvison</h2>
-        </div>
-        <div className="px-4 py-2 bg-secondary text-white  d-flex align-items-center gap-2">
-          <span>
-            <i class="bi bi-house fs-5"></i>
+  function CustomLink({ children, to, ...props }) {
+    let resolved = useResolvedPath(to);
+    let match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+      <Link to={to} {...props} style={match && { backgroundColor: "#ffd166",color:'black' }}>
+        {children}
+        {match && (
+          <span
+            className="position-absolute top-0 bottom-0 d-flex align-items-center"
+            style={{ right: "24px" }}
+          >
+            <i class="bi bi-chevron-right"></i>
           </span>
-          <span className="fs-5">Dashboard</span>
+        )}
+      </Link>
+    );
+  }
+  return (
+    <nav>
+      {isSidebarOpen && (
+        <div
+          className="custom-bg-primary-light"
+          style={{ width: "250px", height: "100vh", boxSizing: "border-box" }}
+        >
+          <Container className="w-100 p-0">
+            <div className="mx-4 pt-3 mb-4">
+              <h2 className="fs-4 text-uppercase">Vidyayan</h2>
+            </div>
+            <div className="mb-3 bg-secondary">
+              <CustomLink
+                to="/dashboard"
+                className="px-4 py-2 w-100 nav-link text-decoration-none position-relative  d-flex align-items-center"
+              >
+                <span className="me-3">
+                  <i class="bi bi-house fs-5"></i>
+                </span>
+                <span className="fs-5">Dashboard</span>
+              </CustomLink>
+            </div>
+            <div className="my-2">
+              <h4 className="fs-6 px-4">Sales</h4>
+              <ul className="px-0" style={{ listStyleType: "none" }}>
+                <li className="">
+                  <CustomLink
+                    to="products"
+                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2 nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-cart3"></i>
+                    </span>
+                    <span>Products</span>
+                  </CustomLink>
+                </li>
+                <li className="">
+                  <CustomLink
+                    to="customers"
+                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2 nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-people"></i>
+                    </span>
+                    <span>Customers</span>
+                  </CustomLink>
+                </li>
+                <li className="">
+                  <CustomLink
+                    to="transactions"
+                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2 nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-receipt-cutoff"></i>
+                    </span>
+                    <span>Transactions</span>
+                  </CustomLink>
+                </li>
+              </ul>
+            </div>
+            <div className="my-2">
+              <h4 className="fs-6 w-100 px-4" style={{ whiteSpace: "nowrap" }}>
+                Client Facing
+              </h4>
+              <ul className="px-0" style={{ listStyleType: "none" }}>
+                <li className="">
+                  <CustomLink
+                    to="overview"
+                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-hourglass-split"></i>
+                    </span>
+                    <span>Overview</span>
+                  </CustomLink>
+                </li>
+                <li className="">
+                  <CustomLink
+                    to="daily"
+                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-calendar-event"></i>
+                    </span>
+                    <span>Daily</span>
+                  </CustomLink>
+                </li>
+                <li className="">
+                  <CustomLink
+                    to="monthly"
+                    className="position-relative text-white text-decoration-none w-100 d-flex px-4 py-2  nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-calendar3"></i>
+                    </span>
+                    <span>Monthly</span>
+                  </CustomLink>
+                </li>
+              </ul>
+            </div>
+            <div className="my-2">
+              <h4 className="fs-6 px-4">Management</h4>
+              <ul className="px-0 " style={{ listStyleType: "none" }}>
+                <li className="">
+                  <CustomLink
+                    to="admin"
+                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-shield-slash"></i>
+                    </span>
+                    <span>Admin</span>
+                  </CustomLink>
+                </li>
+                <li className="">
+                  <CustomLink
+                    to="users"
+                    className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
+                  >
+                    <span className="me-3">
+                      <i class="bi bi-person-check"></i>
+                    </span>
+                    <span>Users</span>
+                  </CustomLink>
+                </li>
+              </ul>
+            </div>
+            <div className="d-flex justify-content-center">
+              <button className="px-4 py-1 rounded border-0 shadow bg-secondary fs-5 d-flex">
+                <span> Logout</span>
+                <span className="ms-3">
+                  <i class="bi bi-box-arrow-right"></i>
+                </span>
+              </button>
+            </div>
+          </Container>
         </div>
-        <div className="mx-4 my-4">
-          <h4 className="fs-5">Sales</h4>
-          <ul className="px-0" style={{ listStyleType: "none" }}>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-cart3"></i>
-                </span>
-                <span>Products</span>
-              </a>
-            </li>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-people"></i>
-                </span>
-                <span>Products</span>
-              </a>
-            </li>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-receipt-cutoff"></i>
-                </span>
-                <span>Products</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="mx-4 my-4">
-          <h4 className="fs-5 w-100" style={{ whiteSpace: "nowrap" }}>
-            Client Facing
-          </h4>
-          <ul className="px-0" style={{ listStyleType: "none" }}>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-cart3"></i>
-                </span>
-                <span>Products</span>
-              </a>
-            </li>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-calendar-event"></i>
-                </span>
-                <span>Products</span>
-              </a>
-            </li>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-calendar3"></i>
-                </span>
-                <span>Products</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="mx-4 my-4">
-          <h4 className="fs-5">Management</h4>
-          <ul className="px-0 " style={{ listStyleType: "none" }}>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-shield-slash"></i>
-                </span>
-                <span>Admin</span>
-              </a>
-            </li>
-            <li className="py-1">
-              <a
-                href="#"
-                className="text-white text-decoration-none w-100 d-flex"
-              >
-                <span className="me-3">
-                  <i class="bi bi-person-check"></i>
-                </span>
-                <span>User</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="mx-2 d-flex justify-content-center">
-          <button className="px-4 py-1 rounded border-0 shadow bg-secondary fs-5">
-            Logout
-            <span className="ms-3">
-              <i class="bi bi-box-arrow-right"></i>
-            </span>
-          </button>
-        </div>
-      </Container>
-    </div>
+      )}
+    </nav>
   );
 }
 
