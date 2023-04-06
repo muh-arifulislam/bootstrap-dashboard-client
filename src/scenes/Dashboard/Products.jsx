@@ -1,5 +1,4 @@
 import React from "react";
-import { Accordion } from "react-bootstrap";
 import ProductCard from "../../components/ProductCard";
 function Products() {
   return (
