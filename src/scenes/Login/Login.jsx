@@ -1,17 +1,44 @@
-import React from "react";
-
+import React, { useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
 const Login = () => {
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  const token = useToken(user || gUser);
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    signInWithEmailAndPassword(email, password);
+  };
   return (
     <div
       style={{ height: "100vh" }}
       className="d-flex justify-content-center align-items-center"
     >
       <div className="border border-1 rounded shadow-sm p-5 custom-w-login">
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-3 d-flex justify-content-between align-items-center">
             <h2 className="fs-3 m-0">Sign In</h2>
             <div>
               <button
+                onClick={() => signInWithGoogle()}
                 type="button"
                 class="btn btn-outline-secondary btn-sm rounded-pill mx-1"
               >
@@ -39,7 +66,7 @@ const Login = () => {
           </div>
           {/* <!-- Email input --> */}
           <div class="form-outline mb-4">
-            <input type="email" id="form2Example1" class="form-control" />
+            <input ref={emailRef} type="email" id="form2Example1" class="form-control" />
             <label class="form-label" for="form2Example1">
               Email address
             </label>
@@ -47,7 +74,7 @@ const Login = () => {
 
           {/* <!-- Password input --> */}
           <div class="form-outline mb-4">
-            <input type="password" id="form2Example2" class="form-control" />
+            <input ref={passwordRef} type="password" id="form2Example2" class="form-control" />
             <label class="form-label" for="form2Example2">
               Password
             </label>
@@ -63,7 +90,6 @@ const Login = () => {
                   type="checkbox"
                   value=""
                   id="form2Example31"
-                  checked
                 />
                 <label class="form-check-label" for="form2Example31">
                   {" "}
@@ -78,14 +104,14 @@ const Login = () => {
           </div>
 
           {/* <!-- Submit button --> */}
-          <button type="button" class="btn btn-primary btn-block mb-4 w-100">
+          <button type="submit" class="btn btn-primary btn-block mb-4 w-100">
             Sign in
           </button>
 
           {/* <!-- Register buttons --> */}
           <div class="text-center">
             <p>
-              Not a member? <a href="/register">Register</a>
+              Not a member? <Link to="/register">Register</Link>
             </p>
           </div>
         </form>
