@@ -1,13 +1,20 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { useSignOut } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+  const [signOut, loading, error] = useSignOut(auth);
   function CustomLink({ children, to, ...props }) {
     let resolved = useResolvedPath(to);
     let match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-      <Link to={to} {...props} style={match && { backgroundColor: "#ffd166",color:'black' }}>
+      <Link
+        to={to}
+        {...props}
+        style={match && { backgroundColor: "#ffd166", color: "black" }}
+      >
         {children}
         {match && (
           <span
@@ -125,8 +132,11 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                 </li>
               </ul>
             </div>
-            <div className="position-absolute left-0 w-100 d-flex justify-content-center" style={{bottom:'30px'}}>
-              <button className="px-4 py-1 rounded border-0 shadow bg-secondary fs-5 d-flex">
+            <div
+              className="position-absolute left-0 w-100 d-flex justify-content-center"
+              style={{ bottom: "30px" }}
+            >
+              <button onClick={()=>signOut()} className="px-4 py-1 rounded border-0 shadow bg-secondary fs-5 d-flex">
                 <span> Logout</span>
                 <span className="ms-3">
                   <i class="bi bi-box-arrow-right"></i>

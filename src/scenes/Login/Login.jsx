@@ -27,6 +27,7 @@ const Login = () => {
     const password = passwordRef.current.value;
     signInWithEmailAndPassword(email, password);
   };
+  console.log(error?.message);
   return (
     <div
       style={{ height: "100vh" }}
@@ -66,7 +67,12 @@ const Login = () => {
           </div>
           {/* <!-- Email input --> */}
           <div class="form-outline mb-4">
-            <input ref={emailRef} type="email" id="form2Example1" class="form-control" />
+            <input
+              ref={emailRef}
+              type="email"
+              id="form2Example1"
+              class="form-control"
+            />
             <label class="form-label" for="form2Example1">
               Email address
             </label>
@@ -74,7 +80,12 @@ const Login = () => {
 
           {/* <!-- Password input --> */}
           <div class="form-outline mb-4">
-            <input ref={passwordRef} type="password" id="form2Example2" class="form-control" />
+            <input
+              ref={passwordRef}
+              type="password"
+              id="form2Example2"
+              class="form-control"
+            />
             <label class="form-label" for="form2Example2">
               Password
             </label>
@@ -102,7 +113,8 @@ const Login = () => {
               <a href="#!">Forgot password?</a>
             </div>
           </div>
-
+          {/* error hanlding  */}
+          <p className="text-center text-danger">{error?.message}</p>
           {/* <!-- Submit button --> */}
           <button type="submit" class="btn btn-primary btn-block mb-4 w-100">
             Sign in

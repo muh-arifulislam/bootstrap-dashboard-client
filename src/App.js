@@ -12,6 +12,7 @@ import Admin from "./scenes/Dashboard/Admin";
 import Breakdown from "./scenes/Dashboard/Breakdown";
 import Login from "./scenes/Login/Login";
 import Register from "./scenes/Register/Register";
+import RequireLogin from "./scenes/Authentication/RequireLogin";
 function App() {
   return (
     <div className="App">
@@ -19,8 +20,18 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route element={<Layout></Layout>}>
-          <Route path="/" element={<Navigate to="/dashboard" replace></Navigate>}></Route>
-          <Route path="/dashboard" element={<Dashboard></Dashboard>} />
+          <Route
+            path="/"
+            element={<Navigate to="/dashboard" replace></Navigate>}
+          ></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <RequireLogin>
+                <Dashboard></Dashboard>
+              </RequireLogin>
+            }
+          />
           <Route path="/products" element={<Products></Products>} />
           <Route path="/customers" element={<Customers></Customers>} />
           <Route path="/transactions" element={<Transactions></Transactions>} />

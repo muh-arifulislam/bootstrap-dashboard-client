@@ -109,7 +109,6 @@ const Register = () => {
                 type="password"
                 placeholder="ConfirmPassword"
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Row>
           <Form.Group className="mb-3">
@@ -120,6 +119,8 @@ const Register = () => {
               feedbackType="invalid"
             />
           </Form.Group>
+          {/* error handling  */}
+          <p className="text-center text-danger">{error1}</p>
           <Button type="submit" className="w-100">
             Register
           </Button>
