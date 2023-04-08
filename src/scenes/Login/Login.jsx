@@ -27,7 +27,6 @@ const Login = () => {
     const password = passwordRef.current.value;
     signInWithEmailAndPassword(email, password);
   };
-  console.log(error?.message);
   return (
     <div
       style={{ height: "100vh" }}
@@ -41,74 +40,74 @@ const Login = () => {
               <button
                 onClick={() => signInWithGoogle()}
                 type="button"
-                class="btn btn-outline-secondary btn-sm rounded-pill mx-1"
+                className="btn btn-outline-secondary btn-sm rounded-pill mx-1"
               >
                 <span>
-                  <i class="bi bi-google"></i>
+                  <i className="bi bi-google"></i>
                 </span>
               </button>
               <button
                 type="button"
-                class="btn btn-outline-secondary btn-sm rounded-pill mx-1"
+                className="btn btn-outline-secondary btn-sm rounded-pill mx-1"
               >
                 <span>
-                  <i class="bi bi-facebook"></i>
+                  <i className="bi bi-facebook"></i>
                 </span>
               </button>
               <button
                 type="button"
-                class="btn btn-outline-secondary btn-sm rounded-pill mx-1"
+                className="btn btn-outline-secondary btn-sm rounded-pill mx-1"
               >
                 <span>
-                  <i class="bi bi-twitter"></i>
+                  <i className="bi bi-twitter"></i>
                 </span>
               </button>
             </div>
           </div>
           {/* <!-- Email input --> */}
-          <div class="form-outline mb-4">
+          <div className="form-outline mb-4">
             <input
               ref={emailRef}
               type="email"
               id="form2Example1"
-              class="form-control"
+              className="form-control"
             />
-            <label class="form-label" for="form2Example1">
+            <label className="form-label" htmlFor="form2Example1">
               Email address
             </label>
           </div>
 
           {/* <!-- Password input --> */}
-          <div class="form-outline mb-4">
+          <div className="form-outline mb-4">
             <input
               ref={passwordRef}
               type="password"
               id="form2Example2"
-              class="form-control"
+              className="form-control"
             />
-            <label class="form-label" for="form2Example2">
+            <label className="form-label" htmlFor="form2Example2">
               Password
             </label>
           </div>
 
           {/* <!-- 2 column grid layout for inline styling --> */}
-          <div class="row mb-4">
-            <div class="col d-flex justify-content-center">
+          <div className="row mb-4">
+            <div className="col d-flex justify-content-center">
               {/* <!-- Checkbox --> */}
-              <div class="form-check">
+              <div className="form-check">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
                   value=""
                   id="form2Example31"
                 />
-                <label class="form-check-label" for="form2Example31">
+                <label className="form-check-label" htmlFor="form2Example31">
                   {" "}
                   Remember me{" "}
                 </label>
               </div>
             </div>
-            <div class="col">
+            <div className="col">
               {/* <!-- Simple link --> */}
               <a href="#!">Forgot password?</a>
             </div>
@@ -116,12 +115,12 @@ const Login = () => {
           {/* error hanlding  */}
           <p className="text-center text-danger">{error?.message}</p>
           {/* <!-- Submit button --> */}
-          <button type="submit" class="btn btn-primary btn-block mb-4 w-100">
+          <button type="submit" className="btn btn-primary btn-block mb-4 w-100">
             Sign in
           </button>
 
           {/* <!-- Register buttons --> */}
-          <div class="text-center">
+          <div className="text-center">
             <p>
               Not a member? <Link to="/register">Register</Link>
             </p>

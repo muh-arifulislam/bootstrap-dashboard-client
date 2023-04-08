@@ -22,13 +22,13 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
         {/* RIGHT SIDE  */}
         <div className="d-flex align-items-center">
           <span className="me-3">
-            <i class="bi bi-envelope fs-4"></i>
+            <i className="bi bi-envelope fs-4"></i>
           </span>
           <span className="me-3">
-            <i class="bi bi-bell fs-4"></i>
+            <i className="bi bi-bell fs-4"></i>
           </span>
           <span className="">
-            <i class="bi bi-person-circle fs-2"></i>
+            <i className="bi bi-person-circle fs-2"></i>
           </span>
         </div>
       </div>

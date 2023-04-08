@@ -125,7 +125,7 @@ const Register = () => {
             Register
           </Button>
           {/* <!-- Register buttons --> */}
-          <div class="text-center">
+          <div className="text-center">
             <p>
               Already a member? <Link to="/login">Login</Link>
             </p>

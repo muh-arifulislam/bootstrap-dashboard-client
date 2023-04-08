@@ -19,19 +19,18 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
-        <Route element={<Layout></Layout>}>
+        <Route
+          element={
+            <RequireLogin>
+              <Layout></Layout>
+            </RequireLogin>
+          }
+        >
           <Route
             path="/"
             element={<Navigate to="/dashboard" replace></Navigate>}
           ></Route>
-          <Route
-            path="/dashboard"
-            element={
-              <RequireLogin>
-                <Dashboard></Dashboard>
-              </RequireLogin>
-            }
-          />
+          <Route path="/dashboard" element={<Dashboard></Dashboard>} />
           <Route path="/products" element={<Products></Products>} />
           <Route path="/customers" element={<Customers></Customers>} />
           <Route path="/transactions" element={<Transactions></Transactions>} />

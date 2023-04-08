@@ -3,11 +3,10 @@ const useToken = (user) => {
   const [token, setToken] = useState("");
   const email = user?.user?.email;
   const name = user?.user?.displayName;
-  console.log(email, name,user);
   useEffect(() => {
     if (user) {
       fetch(
-        `http://localhost:5000/user/${email}`,
+        `https://bootstrap-dashboard-server.vercel.app/user/${email}`,
         {
           method: "PUT",
           headers: {

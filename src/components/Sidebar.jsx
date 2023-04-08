@@ -21,7 +21,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
             className="position-absolute top-0 bottom-0 d-flex align-items-center"
             style={{ right: "24px" }}
           >
-            <i class="bi bi-chevron-right"></i>
+            <i className="bi bi-chevron-right"></i>
           </span>
         )}
       </Link>
@@ -44,7 +44,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                 className="px-4 py-2 w-100 nav-link text-decoration-none position-relative  d-flex align-items-center"
               >
                 <span className="me-3">
-                  <i class="bi bi-house fs-5"></i>
+                  <i className="bi bi-house fs-5"></i>
                 </span>
                 <span className="fs-5">Dashboard</span>
               </CustomLink>
@@ -58,7 +58,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     className="position-relative text-decoration-none w-100 d-flex px-4 py-2 nav-link"
                   >
                     <span className="me-3">
-                      <i class="bi bi-cart3"></i>
+                      <i className="bi bi-cart3"></i>
                     </span>
                     <span>Products</span>
                   </CustomLink>
@@ -69,7 +69,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     className="position-relative text-decoration-none w-100 d-flex px-4 py-2 nav-link"
                   >
                     <span className="me-3">
-                      <i class="bi bi-people"></i>
+                      <i className="bi bi-people"></i>
                     </span>
                     <span>Customers</span>
                   </CustomLink>
@@ -80,7 +80,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     className="position-relative text-decoration-none w-100 d-flex px-4 py-2 nav-link"
                   >
                     <span className="me-3">
-                      <i class="bi bi-receipt-cutoff"></i>
+                      <i className="bi bi-receipt-cutoff"></i>
                     </span>
                     <span>Transactions</span>
                   </CustomLink>
@@ -98,7 +98,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
                   >
                     <span className="me-3">
-                      <i class="bi bi-hourglass-split"></i>
+                      <i className="bi bi-hourglass-split"></i>
                     </span>
                     <span>Overview</span>
                   </CustomLink>
@@ -109,7 +109,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
                   >
                     <span className="me-3">
-                      <i class="bi bi-calendar-event"></i>
+                      <i className="bi bi-calendar-event"></i>
                     </span>
                     <span>Breakdown</span>
                   </CustomLink>
@@ -125,7 +125,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     className="position-relative text-decoration-none w-100 d-flex px-4 py-2  nav-link"
                   >
                     <span className="me-3">
-                      <i class="bi bi-shield-slash"></i>
+                      <i className="bi bi-shield-slash"></i>
                     </span>
                     <span>Admin</span>
                   </CustomLink>
@@ -139,7 +139,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
               <button onClick={()=>signOut()} className="px-4 py-1 rounded border-0 shadow bg-secondary fs-5 d-flex">
                 <span> Logout</span>
                 <span className="ms-3">
-                  <i class="bi bi-box-arrow-right"></i>
+                  <i className="bi bi-box-arrow-right"></i>
                 </span>
               </button>
             </div>

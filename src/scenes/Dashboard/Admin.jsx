@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 function Admin() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("https://bootstrap-dashboard-server.vercel.app/user")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
   return (
     <div className="custom-bg-primary-dark text-white dashboard-outlet-item">
       <div className="mb-2">
@@ -18,13 +24,15 @@ function Admin() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1544515</td>
-            <td>Ariful Islam</td>
-            <td>user@gmail.com</td>
-            <td>+880194541454</td>
-            <td>Admin</td>
-          </tr>
+          {users?.map((user) => (
+            <tr key={user?._id}>
+              <td>{user?._id}</td>
+              <td>{user?.name}</td>
+              <td>{user?.email}</td>
+              <td>{user?.phoneNumber}</td>
+              <td>{user?.role}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>

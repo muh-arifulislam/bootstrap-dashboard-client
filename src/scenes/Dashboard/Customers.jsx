@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 function Customers() {
+  const [customers, setCustomers] = useState([]);
+  useEffect(() => {
+    fetch("https://bootstrap-dashboard-server.vercel.app/customer")
+      .then((res) => res.json())
+      .then((data) => setCustomers(data));
+  }, []);
   return (
     <div className="custom-bg-primary-dark text-white dashboard-outlet-item">
       <div className="mb-2">
@@ -18,13 +24,17 @@ function Customers() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1544515</td>
-            <td>Ariful Islam</td>
-            <td>user@gmail.com</td>
-            <td>+880194541454</td>
-            <td>Sadar South, Cumilla lore</td>
-          </tr>
+          {customers?.map((customer) => (
+            <tr key={customer?._id}>
+              <td>{customer?._id}</td>
+              <td>{customer?.name}</td>
+              <td>
+                {customer?.email}
+              </td>
+              <td>{customer?.phoneNumber}</td>
+              <td>{customer?.city}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>

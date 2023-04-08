@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 function Transactions() {
+  const [transactions, setTransactions] = useState([]);
+  useEffect(() => {
+    fetch("https://bootstrap-dashboard-server.vercel.app/transaction")
+      .then((res) => res.json())
+      .then((data) => setTransactions(data));
+  }, []);
   return (
     <div className="custom-bg-primary-dark text-white dashboard-outlet-item">
       <div className="mb-2">
@@ -12,23 +18,23 @@ function Transactions() {
           <tr>
             <th>ID</th>
             <th>User ID</th>
-            <th>CreatedAt</th>
             <th># of Products</th>
             <th>Cost</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1544515</td>
-            <td>Ariful Islam</td>
-            <td>user@gmail.com</td>
-            <td>+880194541454</td>
-            <td>Sadar South, Cumilla lore</td>
-          </tr>
+          {transactions?.map((transaction) => (
+            <tr key={transaction?._id}>
+              <td>{transaction?._id}</td>
+              <td>{transaction?.userId}</td>
+              <td>{transaction?.products.length}</td>
+              <td>{transaction?.cost}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
-  )
+  );
 }
 
-export default Transactions
+export default Transactions;
